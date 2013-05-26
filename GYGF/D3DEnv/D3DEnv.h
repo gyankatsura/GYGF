@@ -17,5 +17,7 @@ void EnvSwitchToExtra();
 void EnvSwitchToMain();
 void EnvSetExtraTexture();
 LPDIRECT3DTEXTURE9 EnvGetExtraTexture();
+bool EnvGetProcessEnable();
+void EnvSetExitSizeMoveCB(void (*cb)());
 
 #endif

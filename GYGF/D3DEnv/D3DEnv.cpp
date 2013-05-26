@@ -7,6 +7,9 @@ LPDIRECT3DTEXTURE9 g_pExtraTexture = NULL;
 LPDIRECT3DSURFACE9 g_pMainSurfaceBackup = NULL;
 bool g_bWindowClosed = false;
 bool g_bInited = false;
+bool g_bFocused = true;
+bool g_bSizeMove = false;
+void (*g_pfnExitSizeMoveCB)() = 0;
 
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
@@ -15,6 +18,19 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 	case WM_CLOSE:
 	case WM_QUIT:
 		g_bWindowClosed = true;
+		break;
+	case WM_KILLFOCUS:
+		g_bFocused = false;
+		break;
+	case WM_SETFOCUS:
+		g_bFocused = true;
+		break;
+	case WM_ENTERSIZEMOVE:
+		g_bSizeMove = true;
+		break;
+	case WM_EXITSIZEMOVE:
+		g_bSizeMove = false;
+		if (g_pfnExitSizeMoveCB) g_pfnExitSizeMoveCB();
 		break;
 	}
 
@@ -136,4 +152,14 @@ void EnvSetExtraTexture()
 LPDIRECT3DTEXTURE9 EnvGetExtraTexture()
 {
 	return g_pExtraTexture;
+}
+
+bool EnvGetProcessEnable()
+{
+	return g_bFocused && !g_bSizeMove;
+}
+
+void EnvSetExitSizeMoveCB(void (*cb)())
+{
+	g_pfnExitSizeMoveCB = cb;
 }

@@ -10,6 +10,11 @@
 #include <Windows.h>
 #include <crtdbg.h>
 
+void OnExitSizeMove()
+{
+	Time::SampleTime();
+}
+
 INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
 {
 	_CrtSetDbgFlag(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_LEAK_CHECK_DF);
@@ -26,10 +31,12 @@ INT WINAPI wWinMain( HINSTANCE hInst, HINSTANCE, LPWSTR, INT )
 	SpriteBatch::Init();
 	Time::Start();
 	Input::Init();
+	EnvSetExitSizeMoveCB(OnExitSizeMove);
 	while (EnvHandleSysMessage())
 	{
 		Time::SampleTime();
 		Input::UpdateInput();
+		if (!EnvGetProcessEnable()) continue;
 		float dt = Time::GetDeltaTime();
 		GameProcess(dt);
 		int frames = Frame::GetFrameByTime(dt);

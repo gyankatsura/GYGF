@@ -93,7 +93,7 @@ void Scene::TestInit()
 		RayController* pc = new RayController();
 		pc->SetSpeed((rand() % 100 - 50) * 0.01f, (rand() % 100 - 50) * 0.01f);
 		pc->SetMaxFrame(rand() % 500 + 180);
-		pc->SetWrapMode(CWM_DESTROYSPRITE);
+		pc->SetWrapMode(CWM_LOOP);
 		fs->SetController(pc);
 		//~Test Controller
 	}
