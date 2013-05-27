@@ -37,7 +37,6 @@ public:
 	void SetFrameSpeedDiv(int div){m_iFrameSpeedDiv = div;}
 private:
 	void ProcessFrame();
-	void ProcessController();
 	void ProcessAnimationFrame();
 };
 

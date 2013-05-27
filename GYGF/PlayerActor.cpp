@@ -14,10 +14,10 @@ PlayerActor::PlayerActor()
 
 void PlayerActor::Process()
 {
-	if (Input::GetKey(0)) y--;
-	if (Input::GetKey(1)) y++;
-	if (Input::GetKey(2)) x--;
-	if (Input::GetKey(3)) x++;
+	if (Input::GetKey(0)) y -= 2;
+	if (Input::GetKey(1)) y += 2;
+	if (Input::GetKey(2)) x -= 2;
+	if (Input::GetKey(3)) x += 2;
 	if (m_pSprite)
 	{
 		m_pSprite->m_transform.translate.x = x;

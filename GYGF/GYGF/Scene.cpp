@@ -7,6 +7,7 @@
 #include "Test.h"
 #include "RayController.h"
 #include "PlayerActor.h"
+#include "FadeController.h"
 
 void Scene::MainRender()
 {
@@ -90,11 +91,14 @@ void Scene::TestInit()
 		if (g_sprite == NULL) g_sprite = fs;
 		//~Test
 		//Test Controller
-		RayController* pc = new RayController();
-		pc->SetSpeed((rand() % 100 - 50) * 0.01f, (rand() % 100 - 50) * 0.01f);
-		pc->SetMaxFrame(rand() % 500 + 180);
-		pc->SetWrapMode(CWM_LOOP);
-		fs->SetController(pc);
+		//RayController* pc = new RayController();
+		//pc->SetSpeed((rand() % 100 - 50) * 0.01f, (rand() % 100 - 50) * 0.01f);
+		//pc->SetMaxFrame(rand() % 500 + 180);
+		//pc->SetWrapMode(CWM_LOOP);
+		//fs->SetController(pc);
+		FadeController* fc = new FadeController();
+		fc->SetWrapMode(CWM_LOOP);
+		fs->SetController(fc);
 		//~Test Controller
 	}
 	PlayerActor::sm_pPlayerLayer = pLayer;

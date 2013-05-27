@@ -54,6 +54,24 @@ void FrameAnimationManager::InitTest()
 	fb.rectId = 1;
 	fb.frames = 1;
 	pAnimation->AddFrameBlock(fb);
+	
+	OffsetBlock ob;
+	ob.offsetX = 0;
+	ob.offsetY = 0;
+	ob.frames = 1;
+	pAnimation->AddFrameOffsetBlock(ob);
+	ob.offsetX = 0;
+	ob.offsetY = 0;
+	ob.frames = 1;
+	pAnimation->AddFrameOffsetBlock(ob);
+	ob.offsetX = 0;
+	ob.offsetY = -5;
+	ob.frames = 1;
+	pAnimation->AddFrameOffsetBlock(ob);
+	ob.offsetX = 0;
+	ob.offsetY = 0;
+	ob.frames = 1;
+	pAnimation->AddFrameOffsetBlock(ob);
 
 	AddAnimation(pAnimation);
 }

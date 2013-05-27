@@ -30,3 +30,9 @@ void Sprite::DetachController()
 		m_pController = NULL;
 	}
 }
+
+void Sprite::ProcessController()
+{
+	if (m_pController != NULL) m_pController->Process();//分开判断因为Process可能删掉Controller
+	if (m_pController != NULL) m_pController->Control();
+}

@@ -17,7 +17,7 @@ class SpriteBatch
 public:
 	static bool Init();
 	static void Begin();
-	static void Draw(int tex_id, RectInt* rect, VecInt* pos, float scl = 1.0f, float rot = 0.0f);
+	static void Draw(int tex_id, RectInt* rect, VecInt* pos, unsigned char alpha = 0xff, float scl = 1.0f, float rot = 0.0f);
 	static void End();
 	static void Uninit();
 };

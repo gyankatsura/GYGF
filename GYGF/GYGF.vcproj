@@ -421,6 +421,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\FadeController.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\FadeController.h"
+					>
+				</File>
+				<File
 					RelativePath=".\FrameBasedController.cpp"
 					>
 				</File>

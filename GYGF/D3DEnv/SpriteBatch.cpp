@@ -30,7 +30,7 @@ void SpriteBatch::Begin()
 	sm_state = BEGAN;
 }
 
-void SpriteBatch::Draw(int tex_id, RectInt* rect, VecInt* pos, float scl /* = 1.0f */, float rot /* = 0.0f */)
+void SpriteBatch::Draw(int tex_id, RectInt* rect, VecInt* pos, unsigned char alpha/* = 0xff*/, float scl /* = 1.0f */, float rot /* = 0.0f */)
 {
 	if (sm_state != BEGAN) return;
 	Texture* tex = TextureManager::GetTexture(tex_id);
@@ -46,7 +46,9 @@ void SpriteBatch::Draw(int tex_id, RectInt* rect, VecInt* pos, float scl /* = 1.
 	v3pos.x = (pos == NULL) ? 0.0f : (float)(pos->x);
 	v3pos.y = (pos == NULL) ? 0.0f : (float)(pos->y);
 	v3pos.z = 0.0f;
-	g_pSprite->Draw(tex->GetD3DTexture(), ptex_rect, NULL, &v3pos, 0xffffffff);
+	DWORD color = alpha << 24;
+	color += 0x00ffffff;
+	g_pSprite->Draw(tex->GetD3DTexture(), ptex_rect, NULL, &v3pos, color);
 }
 
 void SpriteBatch::End()

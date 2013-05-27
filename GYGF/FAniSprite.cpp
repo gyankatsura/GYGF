@@ -41,7 +41,7 @@ void FAniSprite::Restart()
 
 void FAniSprite::Process()
 {
-	ProcessController();
+	Sprite::Process();
 	ProcessAnimationFrame();
 }
 
@@ -69,6 +69,9 @@ void FAniSprite::Draw()
 {
 	if (m_pAnimation == NULL) return;
 	FrameBlock* pBlock = m_pAnimation->GetFrameBlock(m_iCurFrameNum);
+	OffsetBlock* pOffsetBlock = m_pAnimation->GetOffsetBlock(m_iCurFrameNum);
+	int alphaLocalFrame;
+	AlphaBlock* pAlphaBlock = m_pAnimation->GetAlphaBlock(m_iCurFrameNum, &alphaLocalFrame);
 	if (pBlock != NULL)
 	{
 		int texId = m_pAnimation->GetTexId();
@@ -79,9 +82,20 @@ void FAniSprite::Draw()
 			if (pRect != NULL)
 			{
 				VecInt pos;
+				unsigned char finalAlpha = m_alpha;
 				pos.x = (int)(m_transform.translate.x);
 				pos.y = (int)(m_transform.translate.y);
-				SpriteBatch::Draw(texId, pRect, &pos);
+				if (pOffsetBlock)
+				{
+					pos.x += pOffsetBlock->offsetX;
+					pos.y += pOffsetBlock->offsetY;
+				}
+				if (pAlphaBlock)
+				{
+					finalAlpha = pAlphaBlock->alpha0;
+					finalAlpha += (pAlphaBlock->alpha1 - pAlphaBlock->alpha0) * alphaLocalFrame / pAlphaBlock->frames;
+				}
+				SpriteBatch::Draw(texId, pRect, &pos, finalAlpha);
 			}
 		}
 	}
@@ -105,11 +119,6 @@ void FAniSprite::SetCurFrame(int frame)
 	m_iCurFrameNum = frame;
 }
 
-void FAniSprite::ProcessController()
-{
-	if (m_pController != NULL) m_pController->Process();//分开判断因为Process可能删掉Controller
-	if (m_pController != NULL) m_pController->Control();
-}
 
 void FAniSprite::ProcessAnimationFrame()
 {
