@@ -1,19 +1,40 @@
 #include "TextureManager.h"
+#include "FileReadStream.h"
+#include "..\\ProtocolDef.h"
 
+const char* TextureManager::sm_initFileName = "data\\texinit";
 map<int, string>* TextureManager::sm_pIDPathMap;
 vector<Texture*>* TextureManager::sm_pVecTextures;
-const int TextureManager::TOTAL_TEXTURE_NUMBER = 3;
+int TextureManager::sm_iTotalTextureNum = 3;
 
 void TextureManager::Init()
 {
 	//TODO:
 	sm_pIDPathMap = new map<int, string>();
 	sm_pVecTextures = new vector<Texture*>();
-	(*sm_pIDPathMap)[0] = "data\\image\\bg.jpg";
-	(*sm_pIDPathMap)[1] = "data\\image\\mario.png";
-	(*sm_pIDPathMap)[2] = "data\\image\\cloud.png";
-	for (int i = 0; i < TOTAL_TEXTURE_NUMBER; i++)
+	//(*sm_pIDPathMap)[0] = "data\\image\\bg.jpg";
+	//(*sm_pIDPathMap)[1] = "data\\image\\mario.png";
+	//(*sm_pIDPathMap)[2] = "data\\image\\cloud.png";
+	InitFromFile();
+	for (int i = 0; i < sm_iTotalTextureNum; i++)
 		sm_pVecTextures->push_back(NULL);
+}
+
+void TextureManager::InitFromFile()
+{
+	ReadStream* rs = new FileReadStream();
+	rs->open(sm_initFileName);
+
+	rs->read(&sm_iTotalTextureNum, sizeof(int));
+	for (int i = 0; i < sm_iTotalTextureNum; i++)
+	{
+		TextureProtocol tp;
+		rs->read(&tp, sizeof(TextureProtocol));
+		(*sm_pIDPathMap)[tp.tex_id] = tp.path;
+	}
+
+	rs->close();
+	delete rs;
 }
 
 Texture* TextureManager::GetTexture(int id)
@@ -60,5 +81,5 @@ void TextureManager::Clean()
 
 int TextureManager::GetTotalTextureNumber()
 {
-	return TOTAL_TEXTURE_NUMBER;
+	return sm_iTotalTextureNum;
 }

@@ -94,6 +94,7 @@ void FAniSprite::Draw()
 				{
 					finalAlpha = pAlphaBlock->alpha0;
 					finalAlpha += (pAlphaBlock->alpha1 - pAlphaBlock->alpha0) * alphaLocalFrame / pAlphaBlock->frames;
+					finalAlpha *= m_alpha * 1.0f / 255;
 				}
 				SpriteBatch::Draw(texId, pRect, &pos, finalAlpha);
 			}

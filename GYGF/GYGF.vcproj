@@ -465,6 +465,42 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="IO"
+				>
+				<File
+					RelativePath=".\FileReadStream.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\FileReadStream.h"
+					>
+				</File>
+				<File
+					RelativePath=".\FileWriteStream.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\FileWriteStream.h"
+					>
+				</File>
+				<File
+					RelativePath="..\ProtocolDef.h"
+					>
+				</File>
+				<File
+					RelativePath=".\StreamDef.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Data"
+			>
+			<File
+				RelativePath="..\res\data\atlasinit"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\GYGF.cpp"

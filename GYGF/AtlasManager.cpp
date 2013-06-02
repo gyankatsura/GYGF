@@ -1,6 +1,9 @@
 #include "TextureManager.h"
 #include "AtlasManager.h"
+#include "FileReadStream.h"
+#include "..\\ProtocolDef.h"
 
+const char* AtlasManager::sm_initFileName = "data\\atlasinit";
 vector<Atlas*>* AtlasManager::sm_pVecAtlas = NULL;
 
 void AtlasManager::Init()
@@ -10,7 +13,7 @@ void AtlasManager::Init()
 	sm_pVecAtlas->reserve(totalTexNum);
 	for (int i = 0; i < totalTexNum; i++)
 		sm_pVecAtlas->push_back(NULL);
-	InitTest();
+	InitFromFile();
 }
 
 bool AtlasManager::AddAtlas(Atlas* atlas)
@@ -66,4 +69,19 @@ void AtlasManager::InitTest()
 	AddAtlas(1, 14, 0, 15, 26);
 	AddAtlas(1, 29, 0, 15, 26);
 	AddAtlas(2, 0, 0, 512, 512);
+}
+
+void AtlasManager::InitFromFile()
+{
+	FileReadStream frs;
+	frs.open(sm_initFileName);
+	int counter = 0;
+	frs.read(&counter, sizeof(int));
+	for (int i = 0; i < counter; i++)
+	{
+		AtlasProtocol ap;
+		frs.read(&ap, sizeof(AtlasProtocol));
+		AddAtlas(ap.tex_id, ap.rect_left, ap.rect_top, ap.rect_width, ap.rect_height);
+	}
+	frs.close();
 }

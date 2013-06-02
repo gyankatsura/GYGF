@@ -7,9 +7,11 @@ using namespace std;
 
 class AtlasManager
 {
+	static const char* sm_initFileName;
 	static vector<Atlas*>* sm_pVecAtlas;
 public:
 	static void Init();
+	static void InitFromFile();
 	static void InitTest();
 	static bool AddAtlas(Atlas* atlas);
 	static void AddAtlas(int texId, const RectInt& rect);
