@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GYGF", "GYGF\GYGF.vcproj", "{89712137-1C45-4A96-8E4E-718DEC24790C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcproj", "{0013B020-E43F-4809-A710-1D9E79F8539E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,10 +13,6 @@ Global
 		{89712137-1C45-4A96-8E4E-718DEC24790C}.Debug|Win32.Build.0 = Debug|Win32
 		{89712137-1C45-4A96-8E4E-718DEC24790C}.Release|Win32.ActiveCfg = Release|Win32
 		{89712137-1C45-4A96-8E4E-718DEC24790C}.Release|Win32.Build.0 = Release|Win32
-		{0013B020-E43F-4809-A710-1D9E79F8539E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{0013B020-E43F-4809-A710-1D9E79F8539E}.Debug|Win32.Build.0 = Debug|Win32
-		{0013B020-E43F-4809-A710-1D9E79F8539E}.Release|Win32.ActiveCfg = Release|Win32
-		{0013B020-E43F-4809-A710-1D9E79F8539E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
