@@ -7,6 +7,7 @@ protected:
 	Sprite* m_pSprite;
 public:
 	virtual void Embody() = 0;
+	virtual void Debody() = 0;
 };
 
 #endif

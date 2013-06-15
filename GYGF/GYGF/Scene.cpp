@@ -50,6 +50,7 @@ void Scene::MainProcess()
 void Scene::Init()
 {
 	TestInit();
+	::TestInit();
 }
 
 void Scene::TestInit()
@@ -107,6 +108,7 @@ void Scene::TestInit()
 
 void Scene::Uninit()
 {
+	::TestUninit();
 	vector<Layer*>::iterator iter = m_vecLayers.begin();
 	for (;iter != m_vecLayers.end(); iter++)
 		delete (*iter);

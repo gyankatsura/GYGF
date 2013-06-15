@@ -13,8 +13,10 @@ public:
 	int y;
 
 	PlayerActor();
+	~PlayerActor();
 	void Process();
 	virtual void Embody();
+	virtual void Debody();
 };
 
 #endif

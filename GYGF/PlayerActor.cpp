@@ -11,6 +11,11 @@ PlayerActor::PlayerActor()
 
 }
 
+PlayerActor::~PlayerActor()
+{
+	Debody();
+}
+
 
 void PlayerActor::Process()
 {
@@ -33,4 +38,11 @@ void PlayerActor::Embody()
 	pSprite->SetFrameSpeedDiv(10);
 	m_pSprite = pSprite;
 	sm_pPlayerLayer->AddSprite(m_pSprite);
+}
+
+void PlayerActor::Debody()
+{
+	if (m_pSprite == NULL) return;
+	m_pSprite->DetachAndDestroy();
+	m_pSprite = NULL;
 }

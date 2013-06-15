@@ -1,7 +1,7 @@
 #ifndef __MATH_UTIL_H__
 #define __MATH_UTIL_H__
 
-#include "Debug.h"
+//#include "Debug.h"
 namespace math_util
 {
 	const int& max(const int& x, const int& y);

@@ -5,12 +5,23 @@
 Sprite* g_sprite = NULL;
 PlayerActor* pPlayer = NULL;
 
-void TestProcess()
+void TestInit()
 {
 	if (pPlayer == NULL) 
 	{
 		pPlayer = new PlayerActor();
 		pPlayer->Embody();
 	}
-	pPlayer->Process();
+}
+
+void TestProcess()
+{
+	if (pPlayer != NULL)
+		pPlayer->Process();
+}
+
+void TestUninit()
+{
+	if (pPlayer != NULL)
+		delete pPlayer;
 }

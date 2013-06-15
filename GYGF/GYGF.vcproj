@@ -494,14 +494,6 @@
 				</File>
 			</Filter>
 		</Filter>
-		<Filter
-			Name="Data"
-			>
-			<File
-				RelativePath="..\res\data\atlasinit"
-				>
-			</File>
-		</Filter>
 		<File
 			RelativePath=".\GYGF.cpp"
 			>
