@@ -41,6 +41,7 @@ public:
 	void DrawAtlas();
 	void RefreshAtlasList(int tex_id);
 	void ShowAtlasEditor();
+	void AddAtlasItem();
 // 重写
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -76,6 +77,7 @@ public:
 	CStatic m_atlasPanel;
 	afx_msg void OnLbnSelchangeAtlas();
 	afx_msg void OnLbnDblclkAtlas();
+	afx_msg void OnBnClickedAddrect();
 };
 
 #ifndef _DEBUG  // AtlasMakerView.cpp 中的调试版本

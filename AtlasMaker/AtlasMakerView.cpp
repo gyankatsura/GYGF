@@ -22,6 +22,7 @@ BEGIN_MESSAGE_MAP(CAtlasMakerView, CFormView)
 	ON_LBN_SELCHANGE(IDC_LIST2, &CAtlasMakerView::OnLbnSelchangeList2)
 	ON_LBN_SELCHANGE(IDC_ATLAS, &CAtlasMakerView::OnLbnSelchangeAtlas)
 	ON_LBN_DBLCLK(IDC_ATLAS, &CAtlasMakerView::OnLbnDblclkAtlas)
+	ON_BN_CLICKED(IDC_ADDRECT, &CAtlasMakerView::OnBnClickedAddrect)
 END_MESSAGE_MAP()
 
 // CAtlasMakerView ¹¹Ôì/Îö¹¹
@@ -210,4 +211,24 @@ void CAtlasMakerView::OnLbnDblclkAtlas()
 	ShowAtlasEditor();
 	RefreshAtlasList(m_iCurTexId);
 	DrawAtlas();
+}
+
+void CAtlasMakerView::AddAtlasItem()
+{
+	AtlasProtocol ap;
+	AtlasRecord ar;
+	ap.tex_id = m_iCurTexId;
+	ap.rect_height = ap.rect_left = ap.rect_top = ap.rect_width = 0;
+	CAtlasMakerDoc* pDoc = GetDocument();
+	if (pDoc != NULL)
+	{
+		ar.id_in_doc = pDoc->m_atlasList.size();
+		pDoc->m_atlasList.push_back(ap);
+		m_curAtlasList.push_back(ar);
+	}
+	RefreshAtlasList(m_iCurTexId);
+}
+void CAtlasMakerView::OnBnClickedAddrect()
+{
+	AddAtlasItem();
 }
